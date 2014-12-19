@@ -217,3 +217,20 @@ var valueOfHexAtPosition = (function() {
     return Big(h2d[h]).times(sexa.pow(pos));
   };
 })();
+
+function signExtend(outBits, inBits, h) {
+  var hexCharsIn = inBits / 4;
+  var hexCharsOut= outBits / 4;
+  if (h.length > hexCharsIn) {
+    throw new Error('Cannot sign-extend with overflow.');
+  }
+  return /^[89ABCDEF]/.test(pad0(hexCharsIn, h)) ? padF(hexCharsOut, h) : pad0(hexCharsOut, h);
+}
+
+/**
+ * Sign-extends a hex string to an octabyte
+ * @param {number} bits - 8, 16, 32, or 64
+ * @param {Hex} hex
+ * @return {Hex}
+ */
+exports.signExtend64 = _.curry(signExtend, 64);

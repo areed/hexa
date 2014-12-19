@@ -48,3 +48,27 @@ describe('decify', function() {
     });
   });
 });
+
+describe('signExtend64', function() {
+  [
+    //bits, in, out
+    [8, 'FF', 'FFFFFFFFFFFFFFFF'],
+    [8, '60', '0000000000000060'],
+    [16, 'FFFF', 'FFFFFFFFFFFFFFFF'],
+    [16, '7FFF', '0000000000007FFF'],
+    [32, '80000000', 'FFFFFFFF80000000'],
+    [32, '76543210', '0000000076543210'],
+    [64, 'FFFFFFFFFFFFFFFF', 'FFFFFFFFFFFFFFFF'],
+    [64, '0000000000000000', '0000000000000000'],
+  ].forEach(function(t) {
+    var bits = t[0];
+    var input = t[1];
+    var output = t[2];
+
+    describe(['(', bits, ', ', input, ')'].join(''), function() {
+      it(['=>', output].join(' '), function() {
+        expect(hexa.signExtend64(bits, input)).to.equal(output);
+      });
+    });
+  });
+});
