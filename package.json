@@ -1,5 +1,5 @@
 {
-  "name": "hex",
+  "name": "hexa",
   "version": "1.0.0",
   "description": "hexadecimal utility functions",
   "main": "index.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/areed/hex.git"
+    "url": "https://github.com/areed/hexa.git"
   },
   "keywords": [
     "hexadecimal"
@@ -27,7 +27,7 @@
   "author": "Andrew Reed",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/areed/hex/issues"
+    "url": "https://github.com/areed/hexa/issues"
   },
-  "homepage": "https://github.com/areed/hex"
+  "homepage": "https://github.com/areed/hexa"
 }
