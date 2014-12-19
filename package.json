@@ -1,0 +1,33 @@
+{
+  "name": "hex",
+  "version": "1.0.0",
+  "description": "hexadecimal utility functions",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "big.js": "^3.0.0",
+    "chai": "^1.10.0",
+    "highland": "^2.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/areed/hex.git"
+  },
+  "keywords": [
+    "hexadecimal"
+  ],
+  "author": "Andrew Reed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/areed/hex/issues"
+  },
+  "homepage": "https://github.com/areed/hex"
+}
