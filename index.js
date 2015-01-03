@@ -165,6 +165,7 @@ exports.hexify = (function() {
  * @function
  * @param {string} hex
  * @param {number} bits - 8, 16, 32, 64, or 128
+ * @param {boolean} signed
  */
 exports.decify = (function() {
   var two = Big('2');
@@ -187,6 +188,15 @@ exports.decify = (function() {
     return unsigned.toFixed();
   };
 })();
+
+/**
+ * Returns the decimal equivalent of an unsigned hexadecimal byte.
+ * @param {Hex} b
+ * @return {String}
+ */
+exports.decifyByte = function(b) {
+  return (parseInt(b, 16) % 256).toString();
+};
 
 var sum = function(a, b) {
   return b.plus(a);

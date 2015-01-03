@@ -26,25 +26,43 @@ describe('hexify', function() {
   });
 });
 
+var decifyTests = [
+  //hex, bits, signed flag, decimal
+  ['0', 8, true, '0'],
+  ['00', 8, false, '0'],
+  ['FF', 8, true, '-1'],
+  ['FF', 8, false, '255'],
+  ['FFFF', 8, true, '-1'],
+  ['FFFF', 8, false, '255'],
+  ['000000000000000A', 64, false, '10'],
+  ['7F', 8, true, '127'],
+  ['80', 8, true, '-128'],
+  ['80', 8, false, '128'],
+  ['FF7F', 16, true, '-129'],
+  ['1234567890ABCDEFEDCBA09876543210', 128, true, '24197857200151252744792662746087043600'],
+  ['1234567890ABCDEFEDCBA09876543210', 128, false, '24197857200151252744792662746087043600'],
+];
+
+function dTString(t) {
+  return ['("', t[0], '", ', t[1], ', ', t[2], ') => "', t[3], '"'].join('');
+}
+
 describe('decify', function() {
-  [
-    //hex, bits, signed flag, decimal
-    ['0', 8, true, '0'],
-    ['00', 8, false, '0'],
-    ['FF', 8, true, '-1'],
-    ['FF', 8, false, '255'],
-    ['FFFF', 8, true, '-1'],
-    ['FFFF', 8, false, '255'],
-    ['000000000000000A', 64, false, '10'],
-    ['7F', 8, true, '127'],
-    ['80', 8, true, '-128'],
-    ['80', 8, false, '128'],
-    ['FF7F', 16, true, '-129'],
-    ['1234567890ABCDEFEDCBA09876543210', 128, true, '24197857200151252744792662746087043600'],
-    ['1234567890ABCDEFEDCBA09876543210', 128, false, '24197857200151252744792662746087043600'],
-  ].forEach(function(t, i) {
-    it(['("', t[0], '", ', t[1], ', ', t[2], ') => "', t[3], '"'].join(''), function() {
+  decifyTests.forEach(function(t, i) {
+    it(dTString(t), function() {
       expect(hexa.decify(t[0], t[1], t[2])).to.equal(t[3]);
+    });
+  });
+});
+
+describe('decifyByte', function() {
+  decifyTests
+  .filter(function(t) {
+    return t[1] === 8 && t[2] === false;
+  })
+  .forEach(function(t, i) {
+    it(dTString(t), function() {
+      expect(hexa.decifyByte(t[0])).to.equal(t[3]);
     });
   });
 });
